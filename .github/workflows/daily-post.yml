@@ -26,12 +26,12 @@ jobs:
           WP_SITE_URL: ${{ secrets.WP_SITE_URL }}
           WP_USERNAME: ${{ secrets.WP_USERNAME }}
           WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
-        run: python scripts/publish.py
+        run: python flyby-blog-publisher/flyby-blog-publisher/scripts/publish.py
 
       - name: Commit queue state
         run: |
           git config user.name "flyby-blog-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add posts_queue/
+          git add flyby-blog-publisher/flyby-blog-publisher/posts_queue/
           git diff --quiet --cached || git commit -m "Mark post as published [skip ci]"
           git push
